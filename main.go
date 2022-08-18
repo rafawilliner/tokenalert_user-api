@@ -1,7 +1,7 @@
 package main
 
-import "github.com/rafawilliner/tokenalert_user-api/app"
+import "tokenalert_user-api/app"
 
-func main(){
+func main() {
 	app.StartApplication()
 }
