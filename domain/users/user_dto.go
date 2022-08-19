@@ -6,14 +6,21 @@ import (
 	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
 )
 
+const (
+	StatusActive = "active"
+)
+
 type User struct {
 	Id           int64  `json:"id"`
 	Name         string `json:"name"`
 	Email        string `json:"email"`
 	TelegramUser string `json:"telegram_user"`
-	Status string `json:"status"`
-	Password string `json:"password"`
+	Status       string `json:"status"`
+	DateCreated  string `json:"date_created"`
+	Password     string `json:"password"`
 }
+
+type Users []User
 
 func (user *User) Validate() rest_errors.RestErr {
 	user.Name = strings.TrimSpace(user.Name)
