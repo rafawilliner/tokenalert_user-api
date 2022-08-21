@@ -13,11 +13,8 @@ var (
 type usersService struct{}
 
 type usersServiceInterface interface {
-	//GetUser(int64) (*users.User, rest_errors.RestErr)
 	CreateUser(users.User) (*users.User, rest_errors.RestErr)
-	//UpdateUser(bool, users.User) (*users.User, rest_errors.RestErr)
-	//DeleteUser(int64) rest_errors.RestErr
-	//SearchUser(string) (users.Users, rest_errors.RestErr)
+	GetUser(int64) (*users.User, rest_errors.RestErr)
 	LoginUser(users.LoginRequest) (*users.User, rest_errors.RestErr)
 }
 
@@ -32,6 +29,18 @@ func (s *usersService) CreateUser(user users.User) (*users.User, rest_errors.Res
 	if err := user.Save(); err != nil {
 		return nil, err
 	}
+	return &user, nil
+}
+
+func (s *usersService) GetUser(id int64) (*users.User, rest_errors.RestErr) {
+	
+	var user users.User
+	user.Id = 456
+	user.Name = "John"
+	user.Email = "john@gmail.com"
+	user.TelegramUser = "@john"
+	user.Status = users.StatusActive
+	user.DateCreated = date_utils.GetNowDBFormat()
 	return &user, nil
 }
 
