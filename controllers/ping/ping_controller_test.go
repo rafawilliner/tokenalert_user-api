@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"tokenalert_user-api/utils/test_utils"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
