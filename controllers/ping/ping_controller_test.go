@@ -1,7 +1,7 @@
 package ping
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -18,7 +18,7 @@ func TestPing(t *testing.T) {
 
 	Ping(c)
 
-	pingResponse, error := ioutil.ReadAll(response.Body)
+	pingResponse, error := io.ReadAll(response.Body)
 
 	assert.Nil(t, error)
 	assert.Equal(t, http.StatusOK, response.Code)
