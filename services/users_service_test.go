@@ -12,16 +12,13 @@ import (
 
 var (
 	createUserRepoFunc func(user *users.User) rest_errors.RestErr
+	getUserRepoFunc func(int64) (*users.User, rest_errors.RestErr)
 )
 
 type usersRepoMock struct{}
 
 func (*usersRepoMock) Save(user *users.User) rest_errors.RestErr {
 	return createUserRepoFunc(user)
-}
-
-func (*usersRepoMock) FindByEmailAndPassword() rest_errors.RestErr {
-	return nil
 }
 
 func (*usersRepoMock) Get(int64) (*users.User, rest_errors.RestErr) {
@@ -53,7 +50,7 @@ func TestCreateMissingPasswordReturnBadRequest(t *testing.T) {
 	assert.Equal(t, 400, err.Status())
 }
 
-func TestCreateRepositoryFailRetunrInternalServerError(t *testing.T) {
+func TestCreateRepositoryFailReturnInternalServerError(t *testing.T) {
 	user := users.User{Id: 666, Name: "John", Email: "john@mail.com", Password: "admin"}
 	createUserRepoFunc = func(user *users.User) rest_errors.RestErr {
 		return rest_errors.NewInternalServerError("error when trying to save user", errors.New("database error"))
@@ -64,4 +61,20 @@ func TestCreateRepositoryFailRetunrInternalServerError(t *testing.T) {
 	_, err := UsersService.CreateUser(user)
 
 	assert.Equal(t, 500, err.Status())	
+}
+
+func TestGetOK(t *testing.T) {
+
+	user := users.User{Id: 666, Name: "John", Email: "john@mail.com", Password: "admin"}
+	getUserRepoFunc = func(Id int64) (*users.User, rest_errors.RestErr) {
+		return &user, nil
+	}
+
+	repositories.UsersRepository = &usersRepoMock{}
+
+	_, err := UsersService.GetUser(666)
+
+	assert.NoError(t, err)
+	assert.Equal(t, int64(666), user.Id)
+	assert.Equal(t, "John", user.Name)
 }

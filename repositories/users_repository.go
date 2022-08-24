@@ -23,7 +23,6 @@ type usersRepository struct{}
 type userRepositoryInterface interface {
 	Save(*users.User) rest_errors.RestErr
 	Get(int64) (*users.User, rest_errors.RestErr)
-	FindByEmailAndPassword() rest_errors.RestErr
 }
 
 func (u *usersRepository) Save(user *users.User) rest_errors.RestErr {
@@ -51,7 +50,7 @@ func (u *usersRepository) Save(user *users.User) rest_errors.RestErr {
 }
 
 func (u *usersRepository) Get(id int64) (*users.User, rest_errors.RestErr) {
-	
+
 	stmt, err := users_db.Client.Prepare(queryGetUser)
 	if err != nil {
 		logger.Error("error when trying to prepare get user statement", err)
@@ -67,9 +66,4 @@ func (u *usersRepository) Get(id int64) (*users.User, rest_errors.RestErr) {
 		return nil, rest_errors.NewInternalServerError("error fetching user", errors.New("database error"))
 	}
 	return &user, nil
-}
-
-func (u *usersRepository) FindByEmailAndPassword() rest_errors.RestErr {
-
-	return nil
 }

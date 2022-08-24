@@ -46,12 +46,6 @@ func (s *usersService) GetUser(userId int64) (*users.User, rest_errors.RestErr) 
 }
 
 func (s *usersService) LoginUser(request users.LoginRequest) (*users.User, rest_errors.RestErr) {
-	/*dao := &users.User{
-		Email:    request.Email,
-		Password: crypto_utils.GetMd5(request.Password),
-	}
-	if err := dao.FindByEmailAndPassword(); err != nil {
-		return nil, err
-	}*/
+	
 	return nil, nil
 }
