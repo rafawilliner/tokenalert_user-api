@@ -14,16 +14,6 @@ var (
 	createUserRepoFunc func(user *users.User) rest_errors.RestErr
 )
 
-/*func NewMock() (*sql.DB, sqlmock.Sqlmock) {
-	//db, mock, err := sqlmock.New(sqlmock.QueryMatcherOption(sqlmock.QueryMatcherEqual))
-	db, mock, err := sqlmock.New()
-	if err != nil {
-		logger.Error("an error '%s' was not expected when opening a stub database connection", err)
-	}
-
-	return db, mock
-}*/
-
 type usersRepoMock struct{}
 
 func (*usersRepoMock) Save(user *users.User) rest_errors.RestErr {
