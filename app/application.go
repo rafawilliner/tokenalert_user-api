@@ -1,6 +1,8 @@
 package app
 
 import (
+	"tokenalert_user-api/datasources/mysql/users_db"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,6 +12,7 @@ var (
 
 func StartApplication() {
 	mapUrls()
+	users_db.InitDataBase()
 	router.Run(":8080")
 
 }

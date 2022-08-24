@@ -25,7 +25,7 @@ var (
 	schema   = os.Getenv(mysqlUsersSchema)
 )
 
-func init() {
+func InitDataBase() {
 	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8",
 		username, password, host, schema,
 	)
