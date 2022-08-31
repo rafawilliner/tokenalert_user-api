@@ -1,10 +1,10 @@
 package services
 
 import (
-	"tokenalert_user-api/domain/users"
-	"tokenalert_user-api/repositories"
-	"tokenalert_user-api/utils/crypto_utils"
-	"tokenalert_user-api/utils/date_utils"
+	"tokenalert_user-api/src/domain/users"
+	"tokenalert_user-api/src/repositories"
+	"tokenalert_user-api/src/utils/crypto_utils"
+	"tokenalert_user-api/src/utils/date_utils"
 
 	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
 )

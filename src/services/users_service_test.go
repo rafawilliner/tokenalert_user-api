@@ -3,8 +3,8 @@ package services
 import (
 	"errors"
 	"testing"
-	"tokenalert_user-api/domain/users"
-	"tokenalert_user-api/repositories"
+	"tokenalert_user-api/src/domain/users"
+	"tokenalert_user-api/src/repositories"
 
 	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
 	"github.com/stretchr/testify/assert"

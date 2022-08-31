@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"errors"
 	"testing"
-	"tokenalert_user-api/datasources/mysql/users_db"
-	"tokenalert_user-api/domain/users"
+	"tokenalert_user-api/src/datasources/mysql/users_db"
+	"tokenalert_user-api/src/domain/users"
 
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/rafawilliner/tokenalert_utils-go/logger"

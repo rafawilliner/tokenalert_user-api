@@ -2,8 +2,8 @@ package repositories
 
 import (	
 	"errors"
-	"tokenalert_user-api/datasources/mysql/users_db"
-	"tokenalert_user-api/domain/users"
+	"tokenalert_user-api/src/datasources/mysql/users_db"
+	"tokenalert_user-api/src/domain/users"
 
 	"github.com/rafawilliner/tokenalert_utils-go/logger"
 	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"

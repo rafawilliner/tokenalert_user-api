@@ -3,8 +3,8 @@ package users
 import (
 	"net/http"
 	"strconv"
-	"tokenalert_user-api/domain/users"
-	"tokenalert_user-api/services"
+	"tokenalert_user-api/src/domain/users"
+	"tokenalert_user-api/src/services"
 
 	"github.com/gin-gonic/gin"
 	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"

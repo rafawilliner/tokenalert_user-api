@@ -1,8 +1,8 @@
 package app
 
 import (
-	"tokenalert_user-api/controllers/ping"
-	"tokenalert_user-api/controllers/users"
+	"tokenalert_user-api/src/controllers/ping"
+	"tokenalert_user-api/src/controllers/users"
 )
 
 

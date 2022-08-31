@@ -1,7 +1,7 @@
 package app
 
 import (
-	"tokenalert_user-api/datasources/mysql/users_db"
+	"tokenalert_user-api/src/datasources/mysql/users_db"
 
 	"github.com/gin-gonic/gin"
 )
