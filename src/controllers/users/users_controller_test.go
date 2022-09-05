@@ -10,7 +10,7 @@ import (
 	"tokenalert_user-api/src/services"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
+	"github.com/rafawilliner/tokenalert_utils-go/src/rest_errors"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,8 +30,8 @@ func (*usersServiceMock) GetUser(id int64) (*users.User, rest_errors.RestErr) {
 	return getUserFunc(id)
 }
 
-func (*usersServiceMock) LoginUser(request users.LoginRequest) (*users.User, rest_errors.RestErr) {
-	return loginUserFunc(request)
+func (*usersServiceMock) LoginUser(loginRequest users.LoginRequest) (*users.User, rest_errors.RestErr) {
+	return loginUserFunc(loginRequest)
 }
 
 func TestUserCreateOK(t *testing.T) {

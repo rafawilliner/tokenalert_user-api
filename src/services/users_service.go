@@ -6,7 +6,7 @@ import (
 	"tokenalert_user-api/src/utils/crypto_utils"
 	"tokenalert_user-api/src/utils/date_utils"
 
-	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
+	"github.com/rafawilliner/tokenalert_utils-go/src/rest_errors"
 )
 
 var (
@@ -36,7 +36,6 @@ func (s *usersService) CreateUser(user users.User) (*users.User, rest_errors.Res
 }
 
 func (s *usersService) GetUser(userId int64) (*users.User, rest_errors.RestErr) {
-
 	var user *users.User
 	var err rest_errors.RestErr
 	if user, err = repositories.UsersRepository.Get(userId); err != nil {
@@ -45,7 +44,11 @@ func (s *usersService) GetUser(userId int64) (*users.User, rest_errors.RestErr) 
 	return user, nil
 }
 
-func (s *usersService) LoginUser(request users.LoginRequest) (*users.User, rest_errors.RestErr) {
-	
-	return nil, nil
+func (s *usersService) LoginUser(request users.LoginRequest) (*users.User, rest_errors.RestErr) {	
+	var user *users.User
+	var err rest_errors.RestErr
+	if user, err = repositories.UsersRepository.FindByEmailAndPassword(request); err != nil {
+		return nil, err
+	}
+	return user, nil
 }

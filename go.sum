@@ -55,6 +55,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rafawilliner/tokenalert_utils-go v0.0.0-20220818143414-7d1f056e0bbb h1:yybPLyqpS2XKkvpF46LfQyQ6wlMscEL2JtagMkAzLiY=
 github.com/rafawilliner/tokenalert_utils-go v0.0.0-20220818143414-7d1f056e0bbb/go.mod h1:ruegjDXljwhpBc93JF8kfWJPnLndnqth/ryVo1bStQE=
+github.com/rafawilliner/tokenalert_utils-go v0.0.0-20220831184844-e93f7b733cba h1:NJAg3S0dB7YYmzTEYJ/VTjIfMXZe/JXremYj+CHzB18=
+github.com/rafawilliner/tokenalert_utils-go v0.0.0-20220831184844-e93f7b733cba/go.mod h1:ruegjDXljwhpBc93JF8kfWJPnLndnqth/ryVo1bStQE=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUAtL9R8=

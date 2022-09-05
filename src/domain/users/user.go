@@ -3,7 +3,7 @@ package users
 import (
 	"strings"
 
-	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
+	"github.com/rafawilliner/tokenalert_utils-go/src/rest_errors"
 )
 
 const (

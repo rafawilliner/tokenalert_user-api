@@ -6,7 +6,7 @@ import (
 	"log"
 	"github.com/go-sql-driver/mysql"
 	"os"
-	"github.com/rafawilliner/tokenalert_utils-go/logger"
+	"github.com/rafawilliner/tokenalert_utils-go/src/logger"
 )
 
 const (

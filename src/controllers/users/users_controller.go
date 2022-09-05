@@ -7,7 +7,7 @@ import (
 	"tokenalert_user-api/src/services"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
+	"github.com/rafawilliner/tokenalert_utils-go/src/rest_errors"
 )
 
 func getUserId(userIdParam string) (int64, rest_errors.RestErr) {

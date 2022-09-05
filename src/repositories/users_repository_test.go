@@ -8,8 +8,8 @@ import (
 	"tokenalert_user-api/src/domain/users"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/rafawilliner/tokenalert_utils-go/logger"
-	"github.com/rafawilliner/tokenalert_utils-go/rest_errors"
+	"github.com/rafawilliner/tokenalert_utils-go/src/logger"
+	"github.com/rafawilliner/tokenalert_utils-go/src/rest_errors"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -141,4 +141,68 @@ func TestGetExecutionFailed(t *testing.T) {
 	assert.Error(t, err)
 	assert.Equal(t, 500, err.Status())	
 	assert.Equal(t, "error fetching user", err.Message())	
+}
+
+func TestFindByEmailAndPasswordOK(t *testing.T) {
+
+	db, mock := NewMock()
+	users_db.Client = db	
+	defer func() {
+		users_db.Client.Close()
+	}()
+
+	loginRequest := users.LoginRequest{Email: "john@mail.com", Password: "ABC123"}
+	rows := sqlmock.NewRows([]string{"id", "name", "email", "telegram_user", "status"}).
+		AddRow(667, "john", "john@mail.com", "@john", "active")		
+
+	query := "SELECT id, name, email, telegram_user, status FROM users WHERE email=? AND password=? AND status=?"
+	prep := mock.ExpectPrepare(query)
+	prep.ExpectQuery().WithArgs(loginRequest.Email, loginRequest.Password, users.StatusActive).WillReturnRows(rows)
+
+	user, err := UsersRepository.FindByEmailAndPassword(loginRequest)
+	
+	assert.NoError(t, err)
+	assert.Equal(t, int64(667), user.Id)
+	assert.Equal(t, "john@mail.com", user.Email)
+	assert.Equal(t, "@john", user.TelegramUser)
+}
+
+func TestFindByEmailAndPasswordPrepareQueryFailed(t *testing.T) {
+
+	db, mock := NewMock()
+	users_db.Client = db	
+	defer func() {
+		users_db.Client.Close()
+	}()
+
+	loginRequest := users.LoginRequest{Email: "john@mail.com", Password: "ABC123"}
+	query := "SELECT id, name, email, telegram_user, status FROM users WHERE email=? AND password=? AND status=?"
+	expected := mock.ExpectPrepare(query).WillReturnError(rest_errors.NewInternalServerError("internal_server_error_prepare", errors.New("database error")))
+	
+	_, err := UsersRepository.FindByEmailAndPassword(loginRequest)
+	
+	assert.NotNil(t, err)
+	assert.NotNil(t, expected)
+	assert.Equal(t, 500, err.Status())	
+	assert.Equal(t, "error when tying to find user", err.Message())	
+}
+
+func TestFindByEmailAndPasswordExecutionFailed(t *testing.T) {
+
+	db, mock := NewMock()
+	users_db.Client = db	
+	defer func() {
+		users_db.Client.Close()
+	}()
+
+	loginRequest := users.LoginRequest{Email: "john@mail.com", Password: "ABC123"}
+	query := "SELECT id, name, email, telegram_user, status FROM users WHERE email=? AND password=? AND status=?"
+	prep := mock.ExpectPrepare(query)
+	prep.ExpectQuery().WithArgs(667).WillReturnError(rest_errors.NewInternalServerError("internal_server_error", errors.New("database error")))
+
+	_, err := UsersRepository.FindByEmailAndPassword(loginRequest)
+	
+	assert.Error(t, err)
+	assert.Equal(t, 500, err.Status())	
+	assert.Equal(t, "error when trying to find user", err.Message())	
 }
